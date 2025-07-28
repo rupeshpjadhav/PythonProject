@@ -15,7 +15,7 @@ print(multi_line)
 
 # indexing
 text = "Python"
-print(text[0])  # First ccharacter (P)
+print(text[0])  # First character (P)
 print(text[-1])  # Last character (n)
 
 # slicing method to extract parts of the string
