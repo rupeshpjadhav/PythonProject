@@ -11,7 +11,7 @@ print(single_quote)
 print(double_quote)
 print(multi_line)
 
-# Access chracters in a string using indexing and slicing
+# Access characters in a string using indexing and slicing
 
 # indexing
 text = "Python"
