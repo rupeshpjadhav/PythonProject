@@ -1,0 +1,20 @@
+{
+  "items": [
+    {
+      "type": "book",
+      "item_id": "101",
+      "title": "How are you my friend",
+      "is_available": false,
+      "author": "RJ"
+    }
+  ],
+  "members": [
+    {
+      "member_id": "13",
+      "name": "Rupesh",
+      "borrowed_item_ids": [
+        "101"
+      ]
+    }
+  ]
+}
