@@ -1,0 +1,13 @@
+{
+    "name": "Asha",
+    "age": 25,
+    "is_student": true,
+    "skills": [
+        "Python",
+        "problem solving"
+    ],
+    "address": {
+        "city": "Pune",
+        "country": "India"
+    }
+}
