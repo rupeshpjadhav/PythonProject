@@ -1,18 +1,15 @@
-import json
-import requests
 import pytest
 
 
-def test_get_allrecords(base_url,project_id,headers):
-    resp = requests.get(base_url, params={"project_id":project_id}, headers=headers)
-    print(resp.status_code)
-    print(json.dumps(resp.json(), indent=4))
+def test_get_allrecords(api):
+    resp = api.get()
+    api.print_json(resp)
     assert resp.status_code == 200
 
 
-def test_get_singlerecord(base_url,project_id,headers,record_id):
-    resp = requests.get(f"{base_url}/{record_id}",params={"project_id":project_id}, headers=headers)
-    print(json.dumps(resp.json(), indent=4))
+def test_get_singlerecord(api, record_id):
+    resp = api.get(record_id)
+    api.print_json(resp)
     assert resp.status_code == 200
 
 

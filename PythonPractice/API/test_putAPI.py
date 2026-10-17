@@ -1,7 +1,4 @@
-import json
-import requests
 import pytest
-
 
 body = {
   "data": {
@@ -12,11 +9,11 @@ body = {
   }
 }
 
-def test_updated_record(base_url,project_id,headers,record_id):
-    resp = requests.put(f"{base_url}/{record_id}", params={"project_id":project_id}, json=body, headers=headers)
-    print(resp.status_code)
-    print(f"\n Record with {record_id} is updated")
-    print(json.dumps(resp.json(), indent=4))
+
+def test_updated_record(api, record_id):
+    resp = api.put(record_id, body=body)
+    print(f"\nRecord with {record_id} is updated")
+    api.print_json(resp)
     assert resp.status_code == 200
 
 

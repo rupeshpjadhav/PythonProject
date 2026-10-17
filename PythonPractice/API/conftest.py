@@ -1,31 +1,34 @@
 # PythonPractice/API/conftest.py
 import os
-import requests
+from datetime import datetime
+
 import pytest
-from dotenv import load_dotenv
 
-load_dotenv()
+from utils.api_client import APIClient
 
-BASE_URL = os.getenv("BASE_URL", "https://reqres.in/api/collections/products/records")
-PROJECT_ID = os.getenv("PROJECT_ID", "50550")
+
+@pytest.hookimpl(tryfirst=True)
+def pytest_configure(config: pytest.Config):
+    report_dir = "reports"
+    now = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+    os.makedirs(report_dir, exist_ok=True)
+    config.option.htmlpath = f"{report_dir}/report_{now}.html"
+    config.option.self_contained_html = True
+
+
+@pytest.fixture(autouse=True)
+def setup_teardown():
+    print("Setting up ......")
+    yield
+    print("Tearing down")
+
+
+@pytest.fixture(scope="session")
+def api():
+    return APIClient()
 
 
 @pytest.fixture
-def headers():
-    api_key = os.getenv("MY_API_KEY")
-    assert api_key, "MY_API_KEY is missing - add it to .env"
-    return {"x-api-key": api_key, "Accept": "application/json"}
-
-@pytest.fixture
-def base_url():
-    return BASE_URL
-
-
-@pytest.fixture
-def project_id():
-    return PROJECT_ID
-
-@pytest.fixture
-def record_id(base_url,headers, project_id):
-    resp = requests.get(base_url,params={"project_id":project_id}, headers=headers)
-    return resp.json()["data"][0]["id"] # returns first id
+def record_id(api):
+    resp = api.get()
+    return resp.json()["data"][0]["id"]  # returns first id
