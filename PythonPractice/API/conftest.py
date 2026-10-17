@@ -9,7 +9,7 @@ from utils.api_client import APIClient
 
 @pytest.hookimpl(tryfirst=True)
 def pytest_configure(config: pytest.Config):
-    report_dir = "reports"
+    report_dir = os.path.join(os.path.dirname(__file__), "reports")  # always API/reports
     now = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
     os.makedirs(report_dir, exist_ok=True)
     config.option.htmlpath = f"{report_dir}/report_{now}.html"
