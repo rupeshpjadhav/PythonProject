@@ -1,7 +1,10 @@
 {
-    "python-envs.defaultEnvManager": "ms-python.python:system",
+    "python-envs.defaultEnvManager": "ms-python.python:venv",
+    "python.defaultInterpreterPath": "${workspaceFolder}/.venv/bin/python",
+    "python.terminal.activateEnvironment": false,
+    "python-envs.terminal.autoActivationType": "off",
     "code-runner.runInTerminal": true,
     "code-runner.executorMap": {
-        "python": "python3 -u"
+        "python": "\"$workspaceRoot/.venv/bin/python\" -u $fullFileName"
     }
 }
