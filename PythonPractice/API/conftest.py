@@ -18,9 +18,9 @@ def pytest_configure(config: pytest.Config):
 
 @pytest.fixture(autouse=True)
 def setup_teardown():
-    print("Setting up ......")
+    print("\nSetting up ......")
     yield
-    print("Tearing down")
+    print("\nTearing down")
 
 
 @pytest.fixture(scope="session")
