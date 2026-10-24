@@ -1,2 +1,4 @@
 .env
 PythonPractice/API/reports/*.html
+.DS_Store
+PythonPractice/API/.DS_Store
